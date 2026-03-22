@@ -1,903 +1,386 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>한수연 — 블록체인 개발자</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #f9f9f7;
-      --surface: #ffffff;
-      --text: #1a1a1a;
-      --text-secondary: #555;
-      --text-muted: #888;
-      --accent: #2563eb;
-      --accent-light: #eff6ff;
-      --border: #e5e5e0;
-      --tag-bg: #f0f0ec;
-      --radius: 8px;
+      --bg: #f9f9f7; --surface: #ffffff; --text: #1a1a1a;
+      --text-secondary: #555; --text-muted: #888;
+      --accent: #2563eb; --accent-light: #eff6ff;
+      --border: #e5e5e0; --tag-bg: #f0f0ec; --radius: 8px;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    .container {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 60px 24px 120px;
-    }
-
-    header {
-      margin-bottom: 56px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .name {
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-    }
-
-    .title-badge {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      background: var(--accent-light);
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      align-items: flex-end;
-    }
-
-    .links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-    }
-
-    .link-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      display: inline-block;
-      width: 52px;
-      text-align: right;
-      padding-right: 10px;
-      flex-shrink: 0;
-    }
-
-    .link-value {
-      display: inline-block;
-    }
-
-    .intro {
-      margin-top: 28px;
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      max-width: 620px;
-    }
-
-    section {
-      margin-bottom: 56px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 24px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--text);
-    }
-
-    .skill-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 10px;
-      align-items: baseline;
-      flex-wrap: wrap;
-    }
-
-    .skill-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-muted);
-      min-width: 36px;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      background: var(--tag-bg);
-      color: var(--text-secondary);
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    .card {
-      padding: 0;
-      margin-bottom: 40px;
-    }
-
-    .card+.card {
-      border-top: 1px solid var(--border);
-      padding-top: 32px;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .card-title {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .card-sub {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 3px;
-    }
-
-    .period {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .bullet-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .bullet-list li {
-      font-size: 14px;
-      color: var(--text-secondary);
-      padding-left: 16px;
-      position: relative;
-      line-height: 1.65;
-    }
-
-    .bullet-list li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--text);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .project-meta {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    .project-block {
-      margin-bottom: 18px;
-    }
-
-    .project-block-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .project-block-content {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .role-box {
-      background: var(--accent-light);
-      border-left: 3px solid var(--accent);
-      padding: 12px 16px;
-      border-radius: 0 4px 4px 0;
-      margin-bottom: 18px;
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 20px 0;
-    }
-
-    .result-highlight {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      background: var(--accent-light);
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .edu-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .edu-item:last-child {
-      border-bottom: none;
-    }
-
-    .edu-name {
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .edu-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .edu-period {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .velog-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--accent);
-      text-decoration: none;
-      margin-top: 14px;
-    }
-
-    .velog-link:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        font-size: 14px;
-      }
-
-      .container {
-        padding: 40px 16px 80px;
-      }
-
-      header {
-        margin-bottom: 40px;
-        padding-bottom: 28px;
-      }
-
-      .header-top {
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .name {
-        font-size: 26px;
-        letter-spacing: -0.3px;
-      }
-
-      .title-badge {
-        font-size: 12px;
-        margin-top: 6px;
-        padding: 2px 8px;
-      }
-
-      .links {
-        align-items: flex-start;
-        gap: 5px;
-      }
-
-      .links a {
-        font-size: 12px;
-        flex-wrap: wrap;
-        word-break: break-all;
-      }
-
-      .link-label {
-        width: 45px;
-      }
-
-      .intro {
-        font-size: 14px;
-        margin-top: 20px;
-        line-height: 1.7;
-      }
-
-      section {
-        margin-bottom: 40px;
-      }
-
-      .section-title {
-        font-size: 16px;
-        margin-bottom: 18px;
-        padding-bottom: 8px;
-      }
-
-      .skill-row {
-        gap: 8px;
-        margin-bottom: 12px;
-        flex-direction: column;
-      }
-
-      .skill-label {
-        font-size: 11px;
-        min-width: 32px;
-        color: var(--text-muted);
-      }
-
-      .skill-tags {
-        gap: 4px;
-      }
-
-      .tag {
-        font-size: 11px;
-        padding: 2px 6px;
-      }
-
-      .card {
-        margin-bottom: 28px;
-      }
-
-      .card+.card {
-        padding-top: 24px;
-      }
-
-      .card-header {
-        flex-direction: column;
-        gap: 6px;
-        margin-bottom: 12px;
-      }
-
-      .card-title {
-        font-size: 15px;
-      }
-
-      .card-sub {
-        font-size: 12px;
-        margin-top: 2px;
-      }
-
-      .period {
-        font-size: 11px;
-        white-space: normal;
-      }
-
-      .bullet-list {
-        gap: 5px;
-      }
-
-      .bullet-list li {
-        font-size: 13px;
-        padding-left: 14px;
-        line-height: 1.6;
-      }
-
-      .project-meta {
-        font-size: 11px;
-        margin-bottom: 16px;
-      }
-
-      .project-block {
-        margin-bottom: 14px;
-      }
-
-      .project-block-title {
-        font-size: 10px;
-        letter-spacing: 0.8px;
-        margin-bottom: 8px;
-      }
-
-      .project-block-content {
-        font-size: 13px;
-        line-height: 1.6;
-      }
-
-      .role-box {
-        padding: 10px 12px;
-        margin-bottom: 14px;
-        font-size: 13px;
-        line-height: 1.6;
-      }
-
-      .tech-stack {
-        gap: 4px;
-        margin-top: 14px;
-        padding-top: 12px;
-      }
-
-      .edu-item {
-        padding: 10px 0;
-        gap: 8px;
-      }
-
-      .edu-name {
-        font-size: 13px;
-      }
-
-      .edu-desc {
-        font-size: 12px;
-        margin-top: 1px;
-      }
-
-      .edu-period {
-        font-size: 11px;
-      }
-
-      .velog-link {
-        font-size: 12px;
-        margin-top: 10px;
-        gap: 4px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        padding: 28px 12px 60px;
-      }
-
-      .name {
-        font-size: 22px;
-      }
-
-      .title-badge {
-        font-size: 11px;
-        padding: 2px 6px;
-      }
-
-      .intro {
-        font-size: 13px;
-        line-height: 1.6;
-      }
-
-      .section-title {
-        font-size: 14px;
-        margin-bottom: 14px;
-      }
-
-      .skill-label {
-        font-size: 10px;
-      }
-
-      .tag {
-        font-size: 10px;
-        padding: 1px 5px;
-      }
-
-      .card-title {
-        font-size: 14px;
-      }
-
-      .bullet-list li {
-        font-size: 12px;
-        padding-left: 12px;
-      }
-
-      .project-block-title {
-        font-size: 9px;
-      }
-
-      .project-block-content {
-        font-size: 12px;
-      }
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; }
+    .container { max-width: 780px; margin: 0 auto; padding: 60px 24px 120px; }
+    header { margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+    .name { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; }
+    .title-badge { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 500; color: var(--accent); background: var(--accent-light); padding: 3px 10px; border-radius: 20px; }
+    .links { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+    .links a { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; }
+    .link-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); display: inline-block; width: 52px; text-align: right; padding-right: 10px; flex-shrink: 0; }
+    .link-value { display: inline-block; }
+    .intro { margin-top: 28px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; max-width: 620px; }
+    section { margin-bottom: 56px; }
+    .section-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 24px; padding-bottom: 10px; border-bottom: 2px solid var(--text); }
+    .skill-row { display: flex; gap: 12px; margin-bottom: 10px; align-items: baseline; flex-wrap: wrap; }
+    .skill-label { font-size: 12px; font-weight: 700; color: var(--text-muted); min-width: 36px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--tag-bg); color: var(--text-secondary); padding: 3px 8px; border-radius: 4px; }
+    .card { padding: 0; margin-bottom: 40px; }
+    .card + .card { border-top: 1px solid var(--border); padding-top: 32px; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .card-title { font-size: 16px; font-weight: 700; line-height: 1.4; }
+    .card-sub { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+    .period { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .bullet-list li { font-size: 14px; color: var(--text-secondary); padding-left: 16px; position: relative; line-height: 1.65; }
+    .bullet-list li::before { content: '•'; position: absolute; left: 0; color: var(--text); font-size: 14px; line-height: 1.5; }
+    .project-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+    .project-block { margin-bottom: 18px; }
+    .project-block-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+    .project-block-content { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .role-box { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 4px 4px 0; margin-bottom: 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .result-highlight { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: var(--accent); background: var(--accent-light); padding: 2px 6px; border-radius: 4px; }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .edu-item { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-name { font-size: 14px; font-weight: 500; }
+    .edu-desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .edu-period { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .velog-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--accent); text-decoration: none; margin-top: 14px; }
+    .velog-link:hover { text-decoration: underline; }
+    @media (max-width: 600px) { .header-top { flex-direction: column; } .links { align-items: flex-start; } }
   </style>
 </head>
-
 <body>
-  <div class="container">
+<div class="container">
 
-    <!-- Header -->
-    <header>
-      <div class="header-top">
+  <!-- Header -->
+  <header>
+    <div class="header-top">
+      <div>
+        <div class="name">한수연</div>
+        <div class="title-badge">블록체인 · 백엔드 개발자</div>
+      </div>
+      <div class="links">
+        <a href="mailto:hansuyeon.dev@gmail.com"><span class="link-label">Email</span><span class="link-value">hansuyeon.dev@gmail.com</span></a>
+        <a href="https://github.com/HanSu-yeon" target="_blank"><span class="link-label">GitHub</span><span class="link-value">github.com/HanSu-yeon</span></a>
+        <a href="https://velog.io/@learnbuildgrow" target="_blank"><span class="link-label">Blog</span><span class="link-value">velog.io/@learnbuildgrow</span></a>
+      </div>
+    </div>
+    <p class="intro">
+      NestJS·PostgreSQL 기반 백엔드와 EVM 블록체인 실무 경험을 바탕으로, Solana까지 확장해 학습·개발하고 있는 개발자입니다.
+      서비스 환경에 맞는 기술 선택과 성능 최적화에 강점이 있으며,
+      조회 시간 <strong>90초→15초</strong>, API 응답 <strong>1,596ms→273ms</strong> 개선 경험이 있습니다.
+    </p>
+  </header>
+
+  <!-- Skills -->
+  <section>
+    <div class="section-title">기술 스택</div>
+    <div class="skill-row">
+      <span class="skill-label">주력</span>
+      <div class="skill-tags">
+        <span class="tag">NestJS</span><span class="tag">TypeORM</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Hyperledger Besu</span><span class="tag">Ethers.js</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">활용</span>
+      <div class="skill-tags">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React</span>
+        <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Solidity</span><span class="tag">Hardhat</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">경험</span>
+      <div class="skill-tags">
+        <span class="tag">Docker</span><span class="tag">AWS EC2</span><span class="tag">Hyperledger Caliper</span><span class="tag">Kotlin</span><span class="tag">PM2</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section>
+    <div class="section-title">경력</div>
+
+    <div class="card">
+      <div class="card-header">
         <div>
-          <div class="name">한수연</div>
-          <div class="title-badge">블록체인 · 백엔드 개발자</div>
+          <div class="card-title">비아이매트릭스</div>
+          <div class="card-sub">풀스택 개발자 (블록체인, 정부과제)</div>
         </div>
-        <div class="links">
-          <a href="mailto:hansuyeon.dev@gmail.com"><span class="link-label">Email</span> hansuyeon.dev@gmail.com</a>
-          <a href="https://github.com/HanSu-yeon" target="_blank"><span class="link-label">GitHub</span>
-            github.com/HanSu-yeon</a>
-          <a href="https://velog.io/@learnbuildgrow" target="_blank"><span class="link-label">Blog</span>
-            velog.io/@learnbuildgrow</a>
-        </div>
+        <span class="period">2025.02 — 2025.12</span>
       </div>
-      <p class="intro">
-        기술보다 문제와 맥락을 먼저 보고, 서비스 환경에 맞는 구조를 설계합니다.
-        외부 아키텍처를 분석하면서도 기술이전 자산과 운영 조건에 맞는 구조를 선택했고,
-        공공기관 예산·외부망 차단 환경에 맞춰 블록체인 스택을 직접 검토하고 구축했습니다.
-        현재는 NestJS 백엔드 역량을 더하며, 블록체인 인프라와 서버를 함께 설계합니다.
-      </p>
-    </header>
+      <ul class="bullet-list">
+        <li>EVM 환경 인덱싱 구조 설계·구현 — 조회 시간 <span class="result-highlight">90초 → 15초 (83% 개선)</span></li>
+        <li>GIS·헬스케어·제조 3개 도메인 PoC 구현 및 제주도 성과발표회 시연</li>
+        <li>헬스케어 연합학습 실증용 클라이언트 앱 FedBlock 구현 (Android/Kotlin)</li>
+        <li>블록체인 접근제어 스마트컨트랙트 구현 — 의용생체공학회 논문 기여</li>
+      </ul>
+    </div>
 
-    <!-- Skills -->
-    <section>
-      <div class="section-title">기술 스택</div>
-      <div class="skill-row">
-        <span class="skill-label">주력</span>
-        <div class="skill-tags">
-          <span class="tag">NestJS</span><span class="tag">TypeORM</span><span class="tag">PostgreSQL</span>
-          <span class="tag">Hyperledger Besu</span><span class="tag">Ethers.js</span>
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">주식회사 아키아카 (구 알엠소프트)</div>
+          <div class="card-sub">풀스택 개발자 (블록체인)</div>
         </div>
+        <span class="period">2022.10 — 2024.08</span>
       </div>
-      <div class="skill-row">
-        <span class="skill-label">활용</span>
-        <div class="skill-tags">
-          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React</span>
-          <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Solidity</span><span
-            class="tag">Hardhat</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-label">경험</span>
-        <div class="skill-tags">
-          <span class="tag">Docker</span><span class="tag">AWS EC2</span><span class="tag">Hyperledger
-            Caliper</span><span class="tag">Kotlin</span><span class="tag">PM2</span>
-        </div>
-      </div>
-    </section>
+      <ul class="bullet-list">
+        <li>양천구 NFT 서비스 블록체인 인프라부터 프론트엔드까지 <strong>1인 설계·구축·납품</strong></li>
+        <li>국립중앙과학관 NFT 서비스 설계·구축 참여</li>
+        <li>공공기관 외부망 차단·예산 제약 환경에 맞춰 블록체인 스택 직접 선정·구축</li>
+        <li>Ethers.js 서버 사이드 지갑 자동 생성 구현 — 회원가입만으로 지갑 발급, 별도 Web3 설정 없이 서비스 이용 가능</li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- Experience -->
-    <section>
-      <div class="section-title">경력</div>
+  <!-- Projects -->
+  <section>
+    <div class="section-title">프로젝트</div>
 
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">비아이매트릭스</div>
-            <div class="card-sub">풀스택 개발자 (블록체인, 정부과제)</div>
-          </div>
-          <span class="period">2025.02 — 2025.12</span>
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">BI-Indexing Gateway</div>
+          <div class="card-sub">외부 체인 데이터 수집·인덱싱 API 서버 개발</div>
         </div>
+        <span class="period">2025.05 — 2025.11</span>
+      </div>
+      <p class="project-meta">비아이매트릭스</p>
+
+      <div class="project-block">
+        <div class="project-block-title">배경</div>
+        <p class="project-block-content">
+          자사 인덱싱 기술은 Fabric 전용 구조로 EVM 환경에서 활용 불가. EVM 체인 데이터는 외부 RPC API를 반복 호출하는 방식으로 10,840건 조회 시 90초 이상 소요 — 실서비스에서 활용하기 위한 인덱싱 구조 필요.
+        </p>
+      </div>
+
+      <div class="project-block">
+        <div class="project-block-title">구현</div>
         <ul class="bullet-list">
-          <li>자사 인덱싱 기술 기반 구조를 EVM 환경으로 확장, 10,840건 조회 시간 <span class="result-highlight">90초 → 15초 (83% 개선)</span></li>
-          <li>자사 인덱싱·TheGraph 아키텍처 비교 분석 후 자사 기술 활용 방향으로 기술 결정 주도</li>
-          <li>GIS·헬스케어·제조 3개 도메인 PoC 구현 및 제주도 성과발표회 시연</li>
-          <li>헬스케어 연합학습 실증용 클라이언트 앱 FedBlock 구현 (Android/Kotlin)</li>
-          <li>블록체인 접근제어 시스템 스마트컨트랙트 구현 및 인덱싱 연동 — 의용생체공학회 논문 기여</li>
+          <li>자사 인덱싱·TheGraph 아키텍처 비교 분석 후 자사 기술 활용 방향으로 결정</li>
+          <li>Fabric(gRPC) 기존 구조 유지 + EVM용 REST API 분기 추가 → 양쪽 체인을 지원하는 Gateway로 확장</li>
+          <li>GIS·헬스케어·제조 3개 도메인 실증 적용 및 소프트웨어 등록 기여</li>
         </ul>
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">주식회사 아키아카 (구 알엠소프트)</div>
-            <div class="card-sub">풀스택 개발자 (블록체인)</div>
-          </div>
-          <span class="period">2022.10 — 2024.08</span>
-        </div>
+      <div class="project-block">
+        <div class="project-block-title">성과</div>
         <ul class="bullet-list">
-          <li>양천구 NFT 서비스 블록체인 인프라부터 프론트엔드까지 <strong>1인 설계·구축·납품</strong></li>
-          <li>국립중앙과학관 NFT 서비스 설계·구축 참여</li>
-          <li>Hyperledger Besu 프라이빗 네트워크 + Private IPFS 직접 구축 (공공기관 외부망 차단 환경 대응)</li>
-          <li>Ethers.js 기반 서버 사이드 지갑 생성 구현 — 회원가입 시 자동 지갑 생성으로 별도 Web3 지식 없이 서비스 이용 가능</li>
-          <li>Spring Boot REST API, React/Next.js 웹 인터페이스 개발</li>
+          <li>조회 시간 <span class="result-highlight">90초 → 15초 미만 (83% 개선)</span> — 10,840건 데이터 기반 검증</li>
         </ul>
       </div>
-    </section>
 
-    <!-- Projects -->
-    <section>
-      <div class="section-title">프로젝트</div>
+      <div class="tech-stack">
+        <span class="tag">JavaScript</span><span class="tag">Ethers.js</span>
+        <span class="tag">React</span><span class="tag">REST API</span><span class="tag">Kaia (EVM) Testnet</span>
+      </div>
+    </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">BI-Indexing Gateway</div>
-            <div class="card-sub">외부 체인 데이터 수집·인덱싱 API 서버 개발</div>
-          </div>
-          <span class="period">2025.05 — 2025.11</span>
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">공공기관 NFT 서비스 구축</div>
+          <div class="card-sub">양천구 역사기록물 · 국립중앙과학관</div>
         </div>
-        <p class="project-meta">비아이매트릭스</p>
+        <span class="period">2023.01 — 2024.08</span>
+      </div>
+      <p class="project-meta">아키아카</p>
 
-        <div class="project-block">
-          <div class="project-block-title">배경</div>
-          <p class="project-block-content">
-            자사 인덱싱 기술은 Fabric 전용 구조로 EVM 환경에서 활용 불가. EVM 체인 데이터는 외부 RPC API를 반복 호출하는 방식으로 10,840건 조회 시 90초 이상 소요 —
-            실서비스에서 활용하기 위한 인덱싱 구조 필요.
-          </p>
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">구현</div>
-          <ul class="bullet-list">
-            <li>자사 인덱싱·TheGraph 아키텍처 비교 분석 후 자사 기술 활용 방향으로 결정</li>
-            <li>Fabric(gRPC) 기존 구조 유지 + EVM용 REST API 분기 추가 → 양쪽 체인을 지원하는 Gateway로 확장</li>
-            <li>GIS·헬스케어·제조 3개 도메인 실증 적용 및 소프트웨어 등록 기여</li>
-          </ul>
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">성과</div>
-          <ul class="bullet-list">
-            <li>조회 시간 <span class="result-highlight">90초 → 15초 미만 (83% 개선)</span> — 10,840건 데이터 기반 검증</li>
-          </ul>
-        </div>
-
-        <div class="tech-stack">
-          <span class="tag">JavaScript</span><span class="tag">Ethers.js</span>
-          <span class="tag">React</span><span class="tag">REST API</span><span class="tag">Kaia (EVM) Testnet</span>
-        </div>
+      <div class="role-box">
+        블록체인 전담 인력 없는 2인 팀에서 기술 검토·스택 선정·구현 방향 수립 주도.
+        백엔드 API, 스마트컨트랙트 연동, 배포 이슈 대응까지 실질적 구현 담당.
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">공공기관 NFT 서비스 구축</div>
-            <div class="card-sub">양천구 역사기록물 · 국립중앙과학관</div>
-          </div>
-          <span class="period">2023.01 — 2024.08</span>
-        </div>
-        <p class="project-meta">아키아카</p>
-
-        <div class="role-box">
-          블록체인 전담 인력 없는 2인 팀에서 기술 검토·스택 선정·구현 방향 수립 주도.
-          백엔드 API, 스마트컨트랙트 연동, 배포 이슈 대응까지 실질적 구현 담당.
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">기술 선택</div>
-          <ul class="bullet-list">
-            <li>이더리움 메인넷 → 트랜잭션 비용 발생, 공공기관 예산 구조 부적합</li>
-            <li>Hyperledger Fabric → EVM 비호환, 향후 확장성 제한</li>
-            <li><strong>Hyperledger Besu 선택</strong> — 비용 없는 프라이빗 환경 + EVM 호환으로 확장 가능</li>
-            <li>외부 스토리지(Pinata 등) → 공공기관 외부망 차단으로 불가 → <strong>Private IPFS 직접 구축</strong></li>
-            <li>HTTPS→HTTP Mixed Content 에러 → 백엔드·IPFS 경로를 Apache ProxyPass로 통합해 HTTPS 단일 경로로 해결</li>
-          </ul>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="project-block">
-          <div class="project-block-title">성과 — 양천구</div>
-          <ul class="bullet-list">
-            <li>역사기록물 30건 NFT 발행, 6개월 안정 운영</li>
-            <li>Hyperledger Caliper로 네트워크 TPS·레이턴시 성능 한계 사전 파악</li>
-            <li>양천구 구축 인프라를 국립중앙과학관 프로젝트에 그대로 적용 → 별도 인프라 구축 없이 바로 개발 착수</li>
-          </ul>
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">성과 — 국립중앙과학관</div>
-          <ul class="bullet-list">
-            <li>Ethers.js 서버 사이드 지갑 자동 생성 — Web3 지식 없이 서비스 이용 가능한 UX 구현</li>
-            <li>Spring Boot 기반 CRUD REST API 8종 설계·개발</li>
-            <li>React → Next.js 일부 마이그레이션, Three.js 3D 뷰어 구현</li>
-          </ul>
-        </div>
-
-        <div class="tech-stack">
-          <span class="tag">Java</span><span class="tag">Spring Boot</span>
-          <span class="tag">Hyperledger Besu</span><span class="tag">Solidity</span>
-          <span class="tag">Private IPFS</span><span class="tag">React</span>
-          <span class="tag">Next.js</span><span class="tag">Ethers.js</span>
-        </div>
+      <div class="project-block">
+        <div class="project-block-title">기술 선택</div>
+        <ul class="bullet-list">
+          <li>이더리움 메인넷 → 트랜잭션 비용 발생, 공공기관 예산 구조 부적합</li>
+          <li>Hyperledger Fabric → EVM 비호환, 향후 확장성 제한</li>
+          <li><strong>Hyperledger Besu 선택</strong> — 비용 없는 프라이빗 환경 + EVM 호환으로 확장 가능</li>
+          <li>외부 스토리지(Pinata 등) → 공공기관 외부망 차단으로 불가 → <strong>Private IPFS 직접 구축</strong></li>
+          <li>HTTPS→HTTP Mixed Content 에러 → 백엔드·IPFS 경로를 Apache ProxyPass로 통합해 HTTPS 단일 경로로 해결</li>
+        </ul>
       </div>
 
-    </section>
+      <div class="divider"></div>
 
-    <!-- Side Projects -->
-    <section>
-      <div class="section-title">사이드 프로젝트</div>
-
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">Rural Rest — 글로벌 빈집 재생 RWA 플랫폼</div>
-            <div class="card-sub">Solana Startup Village Seoul Season 2</div>
-          </div>
-          <span class="period">2026.03 — 진행 중</span>
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">배경</div>
-          <p class="project-block-content">
-            전국 농촌 빈집 13만 채 방치 문제. 기존 플랫폼은 소유자·임차인 연결에 그쳐, 예약·운영·정산을 지속 수행할 실행 체계 부재. 지속 가능한 운영 구조 설계를 목표로 개발.
-          </p>
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">구현</div>
-          <ul class="bullet-list">
-            <li>Anchor 프레임워크 기반 SPL 토큰 발행 — 부동산 지분의 온체인 RWA 토큰화</li>
-            <li>DAO 프로그램 구현 — 지분 비례 거버넌스 투표 및 수익 분배 로직</li>
-          </ul>
-        </div>
-
-        <div class="tech-stack">
-          <span class="tag">Solana</span><span class="tag">Anchor</span>
-          <span class="tag">SPL Token</span><span class="tag">RWA</span>
-          <span class="tag">DAO</span><span class="tag">Next.js</span>
-        </div>
+      <div class="project-block">
+        <div class="project-block-title">성과 — 양천구</div>
+        <ul class="bullet-list">
+          <li>역사기록물 30건 NFT 발행, 6개월 안정 운영</li>
+          <li>Hyperledger Caliper로 네트워크 TPS·레이턴시 성능 한계 사전 파악</li>
+          <li>양천구 구축 인프라를 국립중앙과학관 프로젝트에 그대로 적용 → 별도 인프라 구축 없이 바로 개발 착수</li>
+        </ul>
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">방통대 문제은행 서비스</div>
-            <div class="card-sub">백엔드 API 설계·개발 및 성능 최적화</div>
-          </div>
-          <span class="period">2026.01 — 2026.03</span>
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">배경</div>
-          <p class="project-block-content">
-            방통대 기출문제 열람·풀이 환경 불편 — 직접 겪은 문제를 서비스로 해결하고, 실 사용자를 받는 서비스 운영 경험 확보를 목표로 개발.
-          </p>
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">구현</div>
-          <ul class="bullet-list">
-            <li>Puppeteer 크롤러 직접 구현 — 106,495건 문제 수집·적재</li>
-            <li>JWT 인증, 과목·시험·문제 CRUD REST API 설계·개발 및 AWS EC2 배포</li>
-            <li>Cloudflare R2 이미지 저장 및 URL 기반 서빙 구조 적용</li>
-            <li>PDF 파싱 → DB 적재 파이프라인 구현 (크롤링 미수집 시험지 대응)</li>
-          </ul>
-        </div>
-
-        <div class="project-block">
-          <div class="project-block-title">문제 해결 및 성과</div>
-          <ul class="bullet-list">
-            <li>데이터 적재 후 API 응답 1,596ms로 저하 — EXPLAIN ANALYZE로 exam_id 인덱스 누락(Sequential Scan) 확인</li>
-            <li>SELECT 컬럼 최소화·쿼리 통합(2회→1회)·Connection Pool 설정·COUNT 캐싱 단계별 적용</li>
-            <li>API 응답 <span class="result-highlight">1,596ms → 273ms (83% 개선)</span></li>
-          </ul>
-        </div>
-
-        <a class="velog-link"
-          href="https://velog.io/@learnbuildgrow/API-%EC%9D%91%EB%8B%B5-%EC%86%8D%EB%8F%84-83-%EA%B0%9C%EC%84%A0-DB-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%B6%80%ED%84%B0-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%B5%9C%EC%A0%81%ED%99%94%EA%B9%8C%EC%A7%80"
-          target="_blank">
-          → Velog: API 응답 속도 83% 개선 과정
-        </a>
-
-        <div class="tech-stack">
-          <span class="tag">NestJS</span><span class="tag">TypeORM</span>
-          <span class="tag">PostgreSQL</span><span class="tag">JWT</span>
-          <span class="tag">AWS EC2</span><span class="tag">Cloudflare R2</span>
-          <span class="tag">Puppeteer</span>
-        </div>
+      <div class="project-block">
+        <div class="project-block-title">성과 — 국립중앙과학관</div>
+        <ul class="bullet-list">
+          <li>Ethers.js 서버 사이드 지갑 자동 생성 — Web3 지식 없이 서비스 이용 가능한 UX 구현</li>
+          <li>Spring Boot 기반 CRUD REST API 8종 설계·개발</li>
+          <li>React → Next.js 일부 마이그레이션, Three.js 3D 뷰어 구현</li>
+        </ul>
       </div>
-    </section>
 
-    <!-- Education & Activities -->
-    <section>
-      <div class="section-title">교육 및 활동</div>
-      <div class="card">
-        <div class="edu-item">
-          <div>
-            <div class="edu-name">Solana Startup Village Seoul Season 2</div>
-            <div class="edu-desc">글로벌 빈집 재생 RWA 플랫폼 Rural Rest 팀으로 참가 — 심사위원 5인 전원 Great 이상 획득</div>
-          </div>
-          <span class="edu-period">2026.03</span>
-        </div>
-        <div class="edu-item">
-          <div>
-            <div class="edu-name">글또 10기</div>
-            <div class="edu-desc">2주 1회 기술 글 작성 및 공유</div>
-          </div>
-          <span class="edu-period">2024.10 — 2025.03</span>
-        </div>
-        <div class="edu-item">
-          <div>
-            <div class="edu-name">ICT 올인원 Pass! 블록체인 프로젝트 마스터</div>
-            <div class="edu-desc">실무 블록체인 역량 강화를 위해 수강, 최종 프로젝트 우수팀 선정</div>
-          </div>
-          <span class="edu-period">2024.08 — 2024.10</span>
-        </div>
-        <div class="edu-item">
-          <div>
-            <div class="edu-name">새싹 청년취업사관학교</div>
-            <div class="edu-desc">React, Java, Spring 풀스택, AWS, MSA/DDD 과정 수료 후 개발자로 취업</div>
-          </div>
-          <span class="edu-period">2021.11 — 2022.05</span>
-        </div>
+      <div class="tech-stack">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span>
+        <span class="tag">Hyperledger Besu</span><span class="tag">Solidity</span>
+        <span class="tag">Private IPFS</span><span class="tag">React</span>
+        <span class="tag">Next.js</span><span class="tag">Ethers.js</span>
       </div>
-    </section>
+    </div>
 
-    <!-- Education -->
-    <section>
-      <div class="section-title">학력</div>
-      <div class="card">
-        <div class="edu-item">
-          <div>
-            <div class="edu-name">한국방송통신대학교</div>
-            <div class="edu-desc">컴퓨터과학과 재학 중</div>
-          </div>
-          <span class="edu-period">2024.03 — 현재</span>
+  </section>
+
+  <!-- Side Projects -->
+  <section>
+    <div class="section-title">사이드 프로젝트</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Rural Rest — 글로벌 빈집 재생 RWA 플랫폼</div>
+          <div class="card-sub">Solana Startup Village Seoul Season 2</div>
         </div>
-        <div class="edu-item">
-          <div>
-            <div class="edu-name">제주한라대학교</div>
-            <div class="edu-desc">호텔조리과 전문학사</div>
-          </div>
-          <span class="edu-period">2016.02 — 2018.08</span>
-        </div>
+        <span class="period">2026.03 — 진행 중</span>
       </div>
-    </section>
 
-  </div>
+      <div class="project-block">
+        <div class="project-block-title">배경</div>
+        <p class="project-block-content">
+          전국 농촌 빈집 13만 채 방치 문제. 기존 플랫폼은 소유자·임차인 연결에 그쳐, 예약·운영·정산을 지속 수행할 실행 체계 부재. 지속 가능한 운영 구조 설계를 목표로 개발.
+        </p>
+      </div>
+
+      <div class="project-block">
+        <div class="project-block-title">구현</div>
+        <ul class="bullet-list">
+          <li>Anchor 프레임워크 기반 SPL 토큰 발행 — 부동산 지분의 온체인 RWA 토큰화</li>
+          <li>DAO 프로그램 구현 — 지분 비례 거버넌스 투표 및 수익 분배 로직</li>
+        </ul>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tag">Solana</span><span class="tag">Anchor</span>
+        <span class="tag">SPL Token</span><span class="tag">RWA</span>
+        <span class="tag">DAO</span><span class="tag">Next.js</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">방통대 문제은행 서비스</div>
+          <div class="card-sub">백엔드 API 설계·개발 및 성능 최적화</div>
+        </div>
+        <span class="period">2026.01 — 2026.03</span>
+      </div>
+
+      <div class="project-block">
+        <div class="project-block-title">배경</div>
+        <p class="project-block-content">
+          방통대 기출문제 열람·풀이 환경 불편 — 직접 겪은 문제를 서비스로 해결하고, 실 사용자를 받는 서비스 운영 경험 확보를 목표로 개발.
+        </p>
+      </div>
+
+      <div class="project-block">
+        <div class="project-block-title">구현</div>
+        <ul class="bullet-list">
+          <li>Puppeteer 크롤러 직접 구현 — 106,495건 문제 수집·적재</li>
+          <li>JWT 인증, 과목·시험·문제 CRUD REST API 설계·개발 및 AWS EC2 배포</li>
+          <li>Cloudflare R2 이미지 저장 및 URL 기반 서빙 구조 적용</li>
+          <li>PDF 파싱 → DB 적재 파이프라인 구현 (크롤링 미수집 시험지 대응)</li>
+        </ul>
+      </div>
+
+      <div class="project-block">
+        <div class="project-block-title">문제 해결 및 성과</div>
+        <ul class="bullet-list">
+          <li>데이터 적재 후 API 응답 1,596ms로 저하 — EXPLAIN ANALYZE로 exam_id 인덱스 누락(Sequential Scan) 확인</li>
+          <li>SELECT 컬럼 최소화·쿼리 통합(2회→1회)·Connection Pool 설정·COUNT 캐싱 단계별 적용</li>
+          <li>API 응답 <span class="result-highlight">1,596ms → 273ms (83% 개선)</span></li>
+        </ul>
+      </div>
+
+      <a class="velog-link" href="https://velog.io/@learnbuildgrow/API-%EC%9D%91%EB%8B%B5-%EC%86%8D%EB%8F%84-83-%EA%B0%9C%EC%84%A0-DB-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%B6%80%ED%84%B0-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%B5%9C%EC%A0%81%ED%99%94%EA%B9%8C%EC%A7%80" target="_blank">
+        → Velog: API 응답 속도 83% 개선 과정
+      </a>
+
+      <div class="tech-stack">
+        <span class="tag">NestJS</span><span class="tag">TypeORM</span>
+        <span class="tag">PostgreSQL</span><span class="tag">JWT</span>
+        <span class="tag">AWS EC2</span><span class="tag">Cloudflare R2</span>
+        <span class="tag">Puppeteer</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Activities -->
+  <section>
+    <div class="section-title">교육 및 활동</div>
+    <div class="card">
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Solana Startup Village Seoul Season 2</div>
+          <div class="edu-desc">글로벌 빈집 재생 RWA 플랫폼 Rural Rest 팀으로 참가 — 심사위원 5인 전원 Great 이상 획득</div>
+        </div>
+        <span class="edu-period">2026.03</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">글또 10기</div>
+          <div class="edu-desc">2주 1회 기술 글 작성 및 공유</div>
+        </div>
+        <span class="edu-period">2024.10 — 2025.03</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">ICT 올인원 Pass! 블록체인 프로젝트 마스터</div>
+          <div class="edu-desc">실무 블록체인 역량 강화를 위해 수강, 최종 프로젝트 우수팀 선정</div>
+        </div>
+        <span class="edu-period">2024.08 — 2024.10</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">새싹 청년취업사관학교</div>
+          <div class="edu-desc">React, Java, Spring 풀스택, AWS, MSA/DDD 과정 수료 후 개발자로 취업</div>
+        </div>
+        <span class="edu-period">2021.11 — 2022.05</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section>
+    <div class="section-title">학력</div>
+    <div class="card">
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">한국방송통신대학교</div>
+          <div class="edu-desc">컴퓨터과학과 재학 중</div>
+        </div>
+        <span class="edu-period">2024.03 — 현재</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">제주한라대학교</div>
+          <div class="edu-desc">호텔조리과 전문학사</div>
+        </div>
+        <span class="edu-period">2016.02 — 2018.08</span>
+      </div>
+    </div>
+  </section>
+
+</div>
 </body>
-
 </html>
