@@ -333,13 +333,232 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
+
+      .container {
+        padding: 40px 16px 80px;
+      }
+
+      header {
+        margin-bottom: 40px;
+        padding-bottom: 28px;
+      }
+
       .header-top {
         flex-direction: column;
+        gap: 16px;
+      }
+
+      .name {
+        font-size: 26px;
+        letter-spacing: -0.3px;
+      }
+
+      .title-badge {
+        font-size: 12px;
+        margin-top: 6px;
+        padding: 2px 8px;
       }
 
       .links {
         align-items: flex-start;
+        gap: 5px;
+      }
+
+      .links a {
+        font-size: 12px;
+        flex-wrap: wrap;
+        word-break: break-all;
+      }
+
+      .link-label {
+        width: 45px;
+      }
+
+      .intro {
+        font-size: 14px;
+        margin-top: 20px;
+        line-height: 1.7;
+      }
+
+      section {
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        font-size: 16px;
+        margin-bottom: 18px;
+        padding-bottom: 8px;
+      }
+
+      .skill-row {
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-direction: column;
+      }
+
+      .skill-label {
+        font-size: 11px;
+        min-width: 32px;
+        color: var(--text-muted);
+      }
+
+      .skill-tags {
+        gap: 4px;
+      }
+
+      .tag {
+        font-size: 11px;
+        padding: 2px 6px;
+      }
+
+      .card {
+        margin-bottom: 28px;
+      }
+
+      .card+.card {
+        padding-top: 24px;
+      }
+
+      .card-header {
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+
+      .card-title {
+        font-size: 15px;
+      }
+
+      .card-sub {
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
+      .period {
+        font-size: 11px;
+        white-space: normal;
+      }
+
+      .bullet-list {
+        gap: 5px;
+      }
+
+      .bullet-list li {
+        font-size: 13px;
+        padding-left: 14px;
+        line-height: 1.6;
+      }
+
+      .project-meta {
+        font-size: 11px;
+        margin-bottom: 16px;
+      }
+
+      .project-block {
+        margin-bottom: 14px;
+      }
+
+      .project-block-title {
+        font-size: 10px;
+        letter-spacing: 0.8px;
+        margin-bottom: 8px;
+      }
+
+      .project-block-content {
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .role-box {
+        padding: 10px 12px;
+        margin-bottom: 14px;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .tech-stack {
+        gap: 4px;
+        margin-top: 14px;
+        padding-top: 12px;
+      }
+
+      .edu-item {
+        padding: 10px 0;
+        gap: 8px;
+      }
+
+      .edu-name {
+        font-size: 13px;
+      }
+
+      .edu-desc {
+        font-size: 12px;
+        margin-top: 1px;
+      }
+
+      .edu-period {
+        font-size: 11px;
+      }
+
+      .velog-link {
+        font-size: 12px;
+        margin-top: 10px;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 28px 12px 60px;
+      }
+
+      .name {
+        font-size: 22px;
+      }
+
+      .title-badge {
+        font-size: 11px;
+        padding: 2px 6px;
+      }
+
+      .intro {
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .section-title {
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+
+      .skill-label {
+        font-size: 10px;
+      }
+
+      .tag {
+        font-size: 10px;
+        padding: 1px 5px;
+      }
+
+      .card-title {
+        font-size: 14px;
+      }
+
+      .bullet-list li {
+        font-size: 12px;
+        padding-left: 12px;
+      }
+
+      .project-block-title {
+        font-size: 9px;
+      }
+
+      .project-block-content {
+        font-size: 12px;
       }
     }
   </style>
