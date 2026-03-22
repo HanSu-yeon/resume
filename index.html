@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>한수연 — 블록체인 개발자</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --bg: #f9f9f7;
@@ -21,7 +30,9 @@
       --radius: 8px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
@@ -84,9 +95,34 @@
       color: var(--text-secondary);
       text-decoration: none;
       transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .links a:hover { color: var(--accent); }
+    .links a::before {
+      content: attr(data-label);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      width: 52px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .links a:hover {
+      color: var(--accent);
+    }
+
+    .link-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
 
     .intro {
       margin-top: 28px;
@@ -97,7 +133,9 @@
     }
 
     /* Section */
-    section { margin-bottom: 56px; }
+    section {
+      margin-bottom: 56px;
+    }
 
     .section-title {
       font-size: 18px;
@@ -145,7 +183,7 @@
       margin-bottom: 40px;
     }
 
-    .card + .card {
+    .card+.card {
       border-top: 1px solid var(--border);
       padding-top: 32px;
     }
@@ -285,7 +323,9 @@
       flex-wrap: wrap;
     }
 
-    .edu-item:last-child { border-bottom: none; }
+    .edu-item:last-child {
+      border-bottom: none;
+    }
 
     .edu-name {
       font-size: 14px;
@@ -316,309 +356,328 @@
       margin-top: 14px;
     }
 
-    .velog-link:hover { text-decoration: underline; }
+    .velog-link:hover {
+      text-decoration: underline;
+    }
 
     /* Responsive */
     @media (max-width: 600px) {
-      .header-top { flex-direction: column; }
-      .links { align-items: flex-start; }
-      .card { padding: 20px; }
+      .header-top {
+        flex-direction: column;
+      }
+
+      .links {
+        align-items: flex-start;
+      }
+
+      .card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
 
-  <!-- Header -->
-  <header>
-    <div class="header-top">
-      <div>
-        <div class="name">한수연</div>
-        <div class="title-badge">블록체인 · 백엔드 개발자</div>
-      </div>
-      <div class="links">
-        <a href="mailto:hansuyeon.dev@gmail.com">hansuyeon.dev@gmail.com</a>
-        <a href="https://github.com/HanSu-yeon" target="_blank">github.com/HanSu-yeon</a>
-        <a href="https://velog.io/@learnbuildgrow" target="_blank">velog.io/@learnbuildgrow</a>
-      </div>
-    </div>
-    <p class="intro">
-      기술보다 문제와 맥락을 먼저 보고, 서비스 환경에 맞는 구조를 설계하는 개발자입니다.
-      외부 아키텍처를 분석하면서도 기술이전 자산과 운영 조건에 맞는 구조를 선택했고,
-      공공기관 예산·외부망 차단 환경에 맞춰 블록체인 스택을 직접 검토하고 구축했습니다.
-      현재는 NestJS 백엔드 역량을 더하며, 블록체인 인프라와 서버를 함께 설계할 수 있는 개발자로 성장하고 있습니다.
-    </p>
-  </header>
-
-  <!-- Skills -->
-  <section>
-    <div class="section-title">기술 스택</div>
-    <div class="skill-row">
-      <span class="skill-label">주력</span>
-      <div class="skill-tags">
-        <span class="tag">NestJS</span><span class="tag">TypeORM</span><span class="tag">PostgreSQL</span>
-        <span class="tag">Hyperledger Besu</span><span class="tag">Ethers.js</span>
-      </div>
-    </div>
-    <div class="skill-row">
-      <span class="skill-label">활용</span>
-      <div class="skill-tags">
-        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React</span>
-        <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Solidity</span><span class="tag">Hardhat</span>
-      </div>
-    </div>
-    <div class="skill-row">
-      <span class="skill-label">경험</span>
-      <div class="skill-tags">
-        <span class="tag">Docker</span><span class="tag">AWS EC2</span><span class="tag">Hyperledger Caliper</span><span class="tag">Kotlin</span><span class="tag">PM2</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section>
-    <div class="section-title">경력</div>
-
-    <div class="card">
-      <div class="card-header">
+    <!-- Header -->
+    <header>
+      <div class="header-top">
         <div>
-          <div class="card-title">비아이매트릭스</div>
-          <div class="card-sub">풀스택 개발자 (블록체인, 정부과제)</div>
+          <div class="name">한수연</div>
+          <div class="title-badge">블록체인 · 백엔드 개발자</div>
         </div>
-        <span class="period">2025.02 — 2025.12</span>
-      </div>
-      <ul class="bullet-list">
-        <li>ETRI 기술이전 기반 인덱싱 구조를 EVM 환경으로 확장, 10,840건 조회 시간 <span class="result-highlight">90초 → 15초 (83% 개선)</span></li>
-        <li>인덱싱 아키텍처 레퍼런스 분석 후 기술 방향 결정에 기여</li>
-        <li>GIS·헬스케어·제조 3개 도메인 PoC 구현 및 제주도 성과발표회 시연</li>
-        <li>헬스케어 연합학습 실증용 클라이언트 앱 FedBlock 구현 (Android/Kotlin)</li>
-        <li>블록체인 접근제어 시스템 스마트컨트랙트 구현 및 인덱싱 연동 — 의용생체공학회 논문 기여</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div>
-          <div class="card-title">주식회사 아키아카 (구 알엠소프트)</div>
-          <div class="card-sub">풀스택 개발자 (블록체인)</div>
+        <div class="links">
+          <a href="mailto:hansuyeon.dev@gmail.com"><span class="link-label">Email</span> hansuyeon.dev@gmail.com</a>
+          <a href="https://github.com/HanSu-yeon" target="_blank"><span class="link-label">GitHub</span>
+            github.com/HanSu-yeon</a>
+          <a href="https://velog.io/@learnbuildgrow" target="_blank"><span class="link-label">Blog</span>
+            velog.io/@learnbuildgrow</a>
         </div>
-        <span class="period">2022.10 — 2024.08</span>
       </div>
-      <ul class="bullet-list">
-        <li>양천구 NFT 서비스 블록체인 인프라부터 프론트엔드까지 <strong>1인 설계·구축·납품</strong></li>
-        <li>국립중앙과학관 NFT 서비스 설계·구축 참여 (양천구 인프라 재사용으로 구축 기간 단축)</li>
-        <li>Hyperledger Besu 프라이빗 네트워크 + Private IPFS 직접 구축 (공공기관 외부망 차단 환경 대응)</li>
-        <li>Ethers.js 기반 서버 사이드 지갑 생성 구현 — 회원가입 시 자동 지갑 생성으로 별도 Web3 지식 없이 서비스 이용 가능</li>
-        <li>Spring Boot REST API, React/Next.js 웹 인터페이스 개발</li>
-      </ul>
-    </div>
-  </section>
+      <p class="intro">
+        기술보다 문제와 맥락을 먼저 보고, 서비스 환경에 맞는 구조를 설계하는 개발자입니다.
+        외부 아키텍처를 분석하면서도 기술이전 자산과 운영 조건에 맞는 구조를 선택했고,
+        공공기관 예산·외부망 차단 환경에 맞춰 블록체인 스택을 직접 검토하고 구축했습니다.
+        현재는 NestJS 백엔드 역량을 더하며, 블록체인 인프라와 서버를 함께 설계할 수 있는 개발자로 성장하고 있습니다.
+      </p>
+    </header>
 
-  <!-- Projects -->
-  <section>
-    <div class="section-title">프로젝트</div>
-
-    <!-- Project 1 -->
-    <div class="card">
-      <div class="card-header">
-        <div>
-          <div class="card-title">BI-Indexing Gateway</div>
-          <div class="card-sub">외부 체인 데이터 수집·인덱싱 API 서버 개발</div>
+    <!-- Skills -->
+    <section>
+      <div class="section-title">기술 스택</div>
+      <div class="skill-row">
+        <span class="skill-label">주력</span>
+        <div class="skill-tags">
+          <span class="tag">NestJS</span><span class="tag">TypeORM</span><span class="tag">PostgreSQL</span>
+          <span class="tag">Hyperledger Besu</span><span class="tag">Ethers.js</span>
         </div>
-        <span class="period">2025.05 — 2025.11</span>
       </div>
-      <p class="project-meta">비아이매트릭스</p>
-
-      <div class="project-block">
-        <div class="project-block-title">문제</div>
-        <p class="project-block-content">
-          기존 시스템은 gRPC 기반 Fabric 전용 인덱싱 구조라 EVM 환경 활용 불가.
-          외부 체인 RPC API 반복 호출로 10,840건 조회 시 90초 소요 — 실서비스 활용을 위한 인덱싱 구조 필요.
-        </p>
+      <div class="skill-row">
+        <span class="skill-label">활용</span>
+        <div class="skill-tags">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React</span>
+          <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Solidity</span><span
+            class="tag">Hardhat</span>
+        </div>
       </div>
+      <div class="skill-row">
+        <span class="skill-label">경험</span>
+        <div class="skill-tags">
+          <span class="tag">Docker</span><span class="tag">AWS EC2</span><span class="tag">Hyperledger
+            Caliper</span><span class="tag">Kotlin</span><span class="tag">PM2</span>
+        </div>
+      </div>
+    </section>
 
-      <div class="project-block">
-        <div class="project-block-title">기술 선택 배경</div>
+    <!-- Experience -->
+    <section>
+      <div class="section-title">경력</div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">비아이매트릭스</div>
+            <div class="card-sub">풀스택 개발자 (블록체인, 정부과제)</div>
+          </div>
+          <span class="period">2025.02 — 2025.12</span>
+        </div>
         <ul class="bullet-list">
-          <li>ETRI 고속인덱싱·TheGraph 아키텍처 비교 분석 후 기술이전 자산 활용 방향으로 결정</li>
-          <li>Fabric(gRPC) 기존 구조는 유지하고, EVM 환경을 REST API 방식으로 연동하는 분기를 추가해 양쪽을 지원하는 Gateway로 확장</li>
+          <li>ETRI 기술이전 기반 인덱싱 구조를 EVM 환경으로 확장, 10,840건 조회 시간 <span class="result-highlight">90초 → 15초 (83% 개선)</span>
+          </li>
+          <li>인덱싱 아키텍처 레퍼런스 분석 후 기술 방향 결정에 기여</li>
+          <li>GIS·헬스케어·제조 3개 도메인 PoC 구현 및 제주도 성과발표회 시연</li>
+          <li>헬스케어 연합학습 실증용 클라이언트 앱 FedBlock 구현 (Android/Kotlin)</li>
+          <li>블록체인 접근제어 시스템 스마트컨트랙트 구현 및 인덱싱 연동 — 의용생체공학회 논문 기여</li>
         </ul>
       </div>
 
-      <div class="project-block">
-        <div class="project-block-title">성과</div>
-        <ul class="bullet-list">
-          <li>조회 시간 <span class="result-highlight">90초 → 15초 미만 (83% 개선)</span></li>
-          <li>10,840건 데이터 기반 성능 검증</li>
-          <li>GIS·헬스케어·제조 3개 도메인 실증 적용</li>
-          <li>BI-Indexing Gateway 소프트웨어 등록 기여</li>
-        </ul>
-      </div>
-
-      <div class="tech-stack">
-        <span class="tag">JavaScript</span><span class="tag">Ethers.js</span>
-        <span class="tag">REST API</span><span class="tag">Kaia (EVM) Testnet</span>
-      </div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="card">
-      <div class="card-header">
-        <div>
-          <div class="card-title">공공기관 NFT 서비스 구축</div>
-          <div class="card-sub">양천구 역사기록물 · 국립중앙과학관</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">주식회사 아키아카 (구 알엠소프트)</div>
+            <div class="card-sub">풀스택 개발자 (블록체인)</div>
+          </div>
+          <span class="period">2022.10 — 2024.08</span>
         </div>
-        <span class="period">2023.01 — 2024.08</span>
-      </div>
-      <p class="project-meta">아키아카</p>
-
-      <div class="role-box">
-        블록체인 전담 인력이 없는 2인 팀에서 팀장과 협의하며 블록체인 기술 검토, 스택 선정, 구현 방향 수립을 주도했습니다.
-        이후 백엔드 API, 스마트컨트랙트 연동, 배포 이슈 대응까지 실질적인 구현을 맡았습니다.
-      </div>
-
-      <div class="project-block">
-        <div class="project-block-title">기술 선택 배경</div>
         <ul class="bullet-list">
-          <li>이더리움 메인넷 → 트랜잭션 비용 발생, 공공기관 예산 구조상 부적합</li>
-          <li>Hyperledger Fabric → EVM 비호환, 향후 확장성 제한</li>
-          <li><strong>Hyperledger Besu 선택</strong> → 비용 없는 프라이빗 환경 + EVM 호환으로 확장 가능</li>
-          <li>외부 스토리지(Pinata 등) → 공공기관 외부망 차단으로 불가 → <strong>Private IPFS 직접 구축</strong></li>
-          <li>배포 중 HTTPS→HTTP Mixed Content 에러 → 백엔드·IPFS 경로를 Apache ProxyPass에 통합해 HTTPS 단일 경로로 우회 해결</li>
-        </ul>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="project-block">
-        <div class="project-block-title">성과 — 양천구</div>
-        <ul class="bullet-list">
-          <li>기록물 30건 NFT 발행, 6개월 안정 운영</li>
-          <li>Hyperledger Caliper로 네트워크 TPS·레이턴시 성능 한계 사전 파악</li>
-          <li>구축 인프라를 국립중앙과학관 프로젝트에 재사용 → 인프라 구축 단계 생략</li>
-        </ul>
-      </div>
-
-      <div class="project-block">
-        <div class="project-block-title">성과 — 국립중앙과학관</div>
-        <ul class="bullet-list">
+          <li>양천구 NFT 서비스 블록체인 인프라부터 프론트엔드까지 <strong>1인 설계·구축·납품</strong></li>
+          <li>국립중앙과학관 NFT 서비스 설계·구축 참여</li>
+          <li>Hyperledger Besu 프라이빗 네트워크 + Private IPFS 직접 구축 (공공기관 외부망 차단 환경 대응)</li>
           <li>Ethers.js 기반 서버 사이드 지갑 생성 구현 — 회원가입 시 자동 지갑 생성으로 별도 Web3 지식 없이 서비스 이용 가능</li>
-          <li>Spring Boot 기반 CRUD REST API 8종 설계·개발</li>
-          <li>React → Next.js 일부 마이그레이션, Three.js 3D 뷰어 구현</li>
+          <li>Spring Boot REST API, React/Next.js 웹 인터페이스 개발</li>
         </ul>
       </div>
+    </section>
 
-      <div class="tech-stack">
-        <span class="tag">Java</span><span class="tag">Spring Boot</span>
-        <span class="tag">Hyperledger Besu</span><span class="tag">Solidity</span>
-        <span class="tag">Private IPFS</span><span class="tag">React</span>
-        <span class="tag">Next.js</span><span class="tag">Ethers.js</span>
-      </div>
-    </div>
+    <!-- Projects -->
+    <section>
+      <div class="section-title">프로젝트</div>
 
-    <!-- Project 3 -->
-    <div class="card">
-      <div class="card-header">
-        <div>
-          <div class="card-title">방송대 문제은행 서비스</div>
-          <div class="card-sub">백엔드 API 설계·개발 및 성능 최적화</div>
+      <!-- Project 1 -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">BI-Indexing Gateway</div>
+            <div class="card-sub">외부 체인 데이터 수집·인덱싱 API 서버 개발</div>
+          </div>
+          <span class="period">2025.05 — 2025.11</span>
         </div>
-        <span class="period">2026.01 — 진행 중</span>
-      </div>
-      <p class="project-meta">사이드 프로젝트</p>
+        <p class="project-meta">비아이매트릭스</p>
 
-      <div class="project-block">
-        <div class="project-block-title">문제</div>
-        <p class="project-block-content">
-          시험 기간마다 기출문제를 찾고 풀이를 확인하는 것이 불편해 직접 개발.
-          직접 크롤링으로 106,495건 적재 후 API 응답이 1,596ms로 급격히 저하.
-          EXPLAIN ANALYZE 분석 결과 exam_id 인덱스 누락으로 전체 Sequential Scan 발생 확인.
-        </p>
-      </div>
-
-      <div class="project-block">
-        <div class="project-block-title">문제 해결 과정</div>
-        <ul class="bullet-list">
-          <li>DB 인덱스 설계·추가 (exam_id, subject_id, 복합 인덱스) → Sequential Scan 제거</li>
-          <li>API 응답 여전히 수백ms → 추가 분석으로 <strong>병목의 95.7%가 네트워크(로컬→원격DB)</strong>임을 수치로 규명</li>
-          <li>SELECT 컬럼 최소화, 쿼리 통합(2회→1회), Connection Pool 설정, COUNT 캐싱 단계별 적용</li>
-          <li>프론트가 문제를 1개씩 표시하는데 백엔드가 전체 로드 중임을 발견 → 페이지네이션 추가</li>
-        </ul>
-      </div>
-
-      <div class="project-block">
-        <div class="project-block-title">성과</div>
-        <ul class="bullet-list">
-          <li>API 응답 <span class="result-highlight">1,596ms → 273ms (83% 개선)</span></li>
-          <li>Python 크롤링으로 106,495건 문제 직접 수집·적재</li>
-          <li>JWT 인증, 과목·시험·문제 CRUD REST API 개발 및 AWS EC2 배포</li>
-          <li>Cloudflare R2 이미지 저장 및 URL 기반 서빙 구조 적용</li>
-          <li>시험지 PDF 파싱 기능 개발 중 <span class="wip-badge">진행 중</span></li>
-          <li>Discord 알림 기반 서버 모니터링 <span class="wip-badge">진행 중</span></li>
-        </ul>
-      </div>
-
-      <a class="velog-link" href="https://velog.io/@learnbuildgrow/API-%EC%9D%91%EB%8B%B5-%EC%86%8D%EB%8F%84-83-%EA%B0%9C%EC%84%A0-DB-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%B6%80%ED%84%B0-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%B5%9C%EC%A0%81%ED%99%94%EA%B9%8C%EC%A7%80" target="_blank">
-        → Velog: API 응답 속도 83% 개선 과정
-      </a>
-
-      <div class="tech-stack">
-        <span class="tag">NestJS</span><span class="tag">TypeORM</span>
-        <span class="tag">PostgreSQL</span><span class="tag">JWT</span>
-        <span class="tag">AWS EC2</span><span class="tag">Cloudflare R2</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education & Activities -->
-  <section>
-    <div class="section-title">교육 및 활동</div>
-    <div class="card">
-      <div class="edu-item">
-        <div>
-          <div class="edu-name">글또 10기</div>
-          <div class="edu-desc">2주 1회 기술 글 작성 및 공유</div>
+        <div class="project-block">
+          <div class="project-block-title">문제</div>
+          <p class="project-block-content">
+            기존 시스템은 Fabric 전용 인덱싱 구조라 EVM 환경 활용 불가.
+            외부 체인 RPC API 반복 호출로 10,840건 조회 시 90초 소요 — 실서비스 활용을 위한 인덱싱 구조 필요.
+          </p>
         </div>
-        <span class="edu-period">2024.10 — 2025.03</span>
-      </div>
-      <div class="edu-item">
-        <div>
-          <div class="edu-name">ICT 올인원 Pass! 블록체인 프로젝트 마스터</div>
-          <div class="edu-desc">실무 블록체인 역량 강화를 위해 수강, 최종 프로젝트 우수팀 선정</div>
-        </div>
-        <span class="edu-period">2024.08 — 2024.10</span>
-      </div>
-      <div class="edu-item">
-        <div>
-          <div class="edu-name">새싹 청년취업사관학교</div>
-          <div class="edu-desc">React, Java, Spring 풀스택, AWS, MSA/DDD 과정 수료 후 개발자로 취업</div>
-        </div>
-        <span class="edu-period">2021.11 — 2022.05</span>
-      </div>
-    </div>
-  </section>
 
-  <!-- Education -->
-  <section>
-    <div class="section-title">학력</div>
-    <div class="card">
-      <div class="edu-item">
-        <div>
-          <div class="edu-name">한국방송통신대학교</div>
-          <div class="edu-desc">컴퓨터과학과 재학 중</div>
+        <div class="project-block">
+          <div class="project-block-title">기술 선택 배경</div>
+          <ul class="bullet-list">
+            <li>ETRI 고속인덱싱·TheGraph 아키텍처 비교 분석 후 기술이전 자산 활용 방향으로 결정</li>
+            <li>Fabric(gRPC) 기존 구조는 유지하고, EVM 환경을 REST API 방식으로 연동하는 분기를 추가해 양쪽을 지원하는 Gateway로 확장</li>
+          </ul>
         </div>
-        <span class="edu-period">2024.03 — 현재</span>
-      </div>
-      <div class="edu-item">
-        <div>
-          <div class="edu-name">제주한라대학교</div>
-          <div class="edu-desc">호텔조리과 전문학사</div>
-        </div>
-        <span class="edu-period">2016.02 — 2018.08</span>
-      </div>
-    </div>
-  </section>
 
-</div>
+        <div class="project-block">
+          <div class="project-block-title">성과</div>
+          <ul class="bullet-list">
+            <li>조회 시간 <span class="result-highlight">90초 → 15초 미만 (83% 개선)</span></li>
+            <li>10,840건 데이터 기반 성능 검증</li>
+            <li>GIS·헬스케어·제조 3개 도메인 실증 적용</li>
+            <li>BI-Indexing Gateway 소프트웨어 등록 기여</li>
+          </ul>
+        </div>
+
+        <div class="tech-stack">
+          <span class="tag">JavaScript</span><span class="tag">Ethers.js</span>
+          <span class="tag">React</span><span class="tag">REST API</span><span class="tag">Kaia (EVM) Testnet</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">공공기관 NFT 서비스 구축</div>
+            <div class="card-sub">양천구 역사기록물 · 국립중앙과학관</div>
+          </div>
+          <span class="period">2023.01 — 2024.08</span>
+        </div>
+        <p class="project-meta">아키아카</p>
+
+        <div class="role-box">
+          블록체인 전담 인력이 없는 2인 팀에서 팀장과 협의하며 블록체인 기술 검토, 스택 선정, 구현 방향 수립을 주도했습니다.
+          이후 백엔드 API, 스마트컨트랙트 연동, 배포 이슈 대응까지 실질적인 구현을 맡았습니다.
+        </div>
+
+        <div class="project-block">
+          <div class="project-block-title">기술 선택 배경</div>
+          <ul class="bullet-list">
+            <li>이더리움 메인넷 → 트랜잭션 비용 발생, 공공기관 예산 구조상 부적합</li>
+            <li>Hyperledger Fabric → EVM 비호환, 향후 확장성 제한</li>
+            <li><strong>Hyperledger Besu 선택</strong> → 비용 없는 프라이빗 환경 + EVM 호환으로 확장 가능</li>
+            <li>외부 스토리지(Pinata 등) → 공공기관 외부망 차단으로 불가 → <strong>Private IPFS 직접 구축</strong></li>
+            <li>배포 중 HTTPS→HTTP Mixed Content 에러 → 백엔드·IPFS 경로를 Apache ProxyPass에 통합해 HTTPS 단일 경로로 우회 해결</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="project-block">
+          <div class="project-block-title">성과 — 양천구</div>
+          <ul class="bullet-list">
+            <li>기록물 30건 NFT 발행, 6개월 안정 운영</li>
+            <li>Hyperledger Caliper로 네트워크 TPS·레이턴시 성능 한계 사전 파악</li>
+            <li>구축 인프라를 국립중앙과학관 프로젝트에 재사용 → 인프라 구축 단계 생략</li>
+          </ul>
+        </div>
+
+        <div class="project-block">
+          <div class="project-block-title">성과 — 국립중앙과학관</div>
+          <ul class="bullet-list">
+            <li>Ethers.js 기반 서버 사이드 지갑 생성 구현 — 회원가입 시 자동 지갑 생성으로 별도 Web3 지식 없이 서비스 이용 가능</li>
+            <li>Spring Boot 기반 CRUD REST API 8종 설계·개발</li>
+            <li>React → Next.js 일부 마이그레이션, Three.js 3D 뷰어 구현</li>
+          </ul>
+        </div>
+
+        <div class="tech-stack">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span>
+          <span class="tag">Hyperledger Besu</span><span class="tag">Solidity</span>
+          <span class="tag">Private IPFS</span><span class="tag">React</span>
+          <span class="tag">Next.js</span><span class="tag">Ethers.js</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">방송대 문제은행 서비스</div>
+            <div class="card-sub">백엔드 API 설계·개발 및 성능 최적화</div>
+          </div>
+          <span class="period">2026.01 — 진행 중</span>
+        </div>
+        <p class="project-meta">사이드 프로젝트</p>
+
+        <div class="project-block">
+          <div class="project-block-title">문제</div>
+          <p class="project-block-content">
+            시험 기간마다 기출문제를 찾고 풀이를 확인하는 것이 불편해 직접 개발.
+            직접 크롤링으로 106,495건 적재 후 API 응답이 1,596ms로 급격히 저하.
+            EXPLAIN ANALYZE 분석 결과 exam_id 인덱스 누락으로 전체 Sequential Scan 발생 확인.
+          </p>
+        </div>
+
+        <div class="project-block">
+          <div class="project-block-title">문제 해결 과정</div>
+          <ul class="bullet-list">
+            <li>DB 인덱스 설계·추가 (exam_id, subject_id, 복합 인덱스) → Sequential Scan 제거</li>
+            <li>API 응답 여전히 수백ms → 추가 분석으로 <strong>병목의 95.7%가 네트워크(로컬→원격DB)</strong>임을 수치로 규명</li>
+            <li>SELECT 컬럼 최소화, 쿼리 통합(2회→1회), Connection Pool 설정, COUNT 캐싱 단계별 적용</li>
+            <li>프론트가 문제를 1개씩 표시하는데 백엔드가 전체 로드 중임을 발견 → 페이지네이션 추가</li>
+          </ul>
+        </div>
+
+        <div class="project-block">
+          <div class="project-block-title">성과</div>
+          <ul class="bullet-list">
+            <li>API 응답 <span class="result-highlight">1,596ms → 273ms (83% 개선)</span></li>
+            <li>Python 크롤링으로 106,495건 문제 직접 수집·적재</li>
+            <li>JWT 인증, 과목·시험·문제 CRUD REST API 개발 및 AWS EC2 배포</li>
+            <li>Cloudflare R2 이미지 저장 및 URL 기반 서빙 구조 적용</li>
+            <li>시험지 PDF 파싱 기능 개발 중 <span class="wip-badge">진행 중</span></li>
+            <li>Discord 알림 기반 서버 모니터링 <span class="wip-badge">진행 중</span></li>
+          </ul>
+        </div>
+
+        <a class="velog-link"
+          href="https://velog.io/@learnbuildgrow/API-%EC%9D%91%EB%8B%B5-%EC%86%8D%EB%8F%84-83-%EA%B0%9C%EC%84%A0-DB-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%B6%80%ED%84%B0-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%B5%9C%EC%A0%81%ED%99%94%EA%B9%8C%EC%A7%80"
+          target="_blank">
+          → Velog: API 응답 속도 83% 개선 과정
+        </a>
+
+        <div class="tech-stack">
+          <span class="tag">NestJS</span><span class="tag">TypeORM</span>
+          <span class="tag">PostgreSQL</span><span class="tag">JWT</span>
+          <span class="tag">AWS EC2</span><span class="tag">Cloudflare R2</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Activities -->
+    <section>
+      <div class="section-title">교육 및 활동</div>
+      <div class="card">
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">글또 10기</div>
+            <div class="edu-desc">2주 1회 기술 글 작성 및 공유</div>
+          </div>
+          <span class="edu-period">2024.10 — 2025.03</span>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">ICT 올인원 Pass! 블록체인 프로젝트 마스터</div>
+            <div class="edu-desc">실무 블록체인 역량 강화를 위해 수강, 최종 프로젝트 우수팀 선정</div>
+          </div>
+          <span class="edu-period">2024.08 — 2024.10</span>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">새싹 청년취업사관학교</div>
+            <div class="edu-desc">React, Java, Spring 풀스택, AWS, MSA/DDD 과정 수료 후 개발자로 취업</div>
+          </div>
+          <span class="edu-period">2021.11 — 2022.05</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <div class="section-title">학력</div>
+      <div class="card">
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">한국방송통신대학교</div>
+            <div class="edu-desc">컴퓨터과학과 재학 중</div>
+          </div>
+          <span class="edu-period">2024.03 — 현재</span>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">제주한라대학교</div>
+            <div class="edu-desc">호텔조리과 전문학사</div>
+          </div>
+          <span class="edu-period">2016.02 — 2018.08</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </body>
+
 </html>
